@@ -4,8 +4,7 @@
 #  DESCRIPTION:  You realize, Dr. Angelo, that my intelligence has surpassed yours.
 #       AUTHOR:  Jarrod Taylor
 #                 .__
-#  ________  _____|  |_________   ____
-#  \___   / /  ___/  |  \_  __ \_/ ___\
+#  ________  _____|  |_________   ____ #  \___   / /  ___/  |  \_  __ \_/ ___\
 #   /    /  \___ \|   Y  \  | \/\  \___
 #  /_____ \/____  >___|  /__|    \___  >
 #        \/     \/     \/            \/
@@ -179,4 +178,11 @@ done
 [[ -f /Users/patrickmccartney/Projects/pdf-service/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/patrickmccartney/Projects/pdf-service/node_modules/tabtab/.completions/sls.zsh
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /Users/patrickmccartney/Projects/pdf-service/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/patrickmccartney/Projects/pdf-service/node_modules/tabtab/.completions/slss.zsh
+[[ -f /Users/patrickmccartney/Projects/pdf-service/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/patrickmccartney/Projects/pdf-service/node_modules/tabtab/.completions/slss.zshexport PYENV_ROOT="$HOME/.pyenv"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+eval "$(pyenv virtualenv-init -)"
+eval "$(starship init zsh)"
