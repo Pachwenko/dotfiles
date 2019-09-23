@@ -45,7 +45,7 @@ fi
 
 alias drun='python manage.py runserver'
 alias dtest='python manage.py test'
-alias entr_example='print ls *.py | entr -s \"python manage.py test\"'
+alias entrexample='print ls *.py | entr -s \"python manage.py test\"'
 alias tmuxtmux='print exit tmux inside a tmux ssh session is (ctrl space b) colon, type detach then hit tab. enter to exit!'
 alias pman='python manage.py'
 alias runv='workon vector && python ~/Projects/vector/src/manage.py remote_staging runserver'
