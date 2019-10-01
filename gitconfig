@@ -10,7 +10,21 @@
     deleted = red
     untracked = yellow
 [user]
-    name =
-    email =
+	name = Pachwenko
+	email = 32424503+Pachwenko@users.noreply.github.com
+	SigningKey = 06D701D87A7BC0A4F75EE899682F71D1134A550F
 [push]
     default = matching
+[commit]
+	gpgsign = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[alias]
+    co = checkout
+    cb = checkout -b
+    ga = git commit --ammend
+    gp = git push origin
+    branch-name = "!git rev-parse --abbrev-ref HEAD"
+    publish = "!git push origin $(git branch-name)"
+    pull-rebase = "!git pull origin $(git branch-name) --rebase"
+    reseth = "!git reset origin/$(git branch-name) --hard"
