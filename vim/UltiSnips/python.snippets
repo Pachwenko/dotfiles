@@ -6,3 +6,11 @@ endsnippet
 snippet cl "cl" !b
 print(${0})
 endsnippet
+
+snippet tag "surround with a tag"
+[${1}]${2:${VISUAL}}[/$1]
+endsnippet
+
+snippet b "surrond with [b] tag" !b
+[b]${1:${VISUAL}}[/b]
+endsnippet
