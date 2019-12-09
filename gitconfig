@@ -13,8 +13,6 @@
 	name = Pachwenko
 	email = 32424503+Pachwenko@users.noreply.github.com
 	SigningKey = 06D701D87A7BC0A4F75EE899682F71D1134A550F
-[push]
-    default = matching
 [commit]
 	gpgsign = true
 [url "git@github.com:"]
@@ -28,3 +26,5 @@
     publish = "!git push origin $(git branch-name)"
     pull-rebase = "!git pull origin $(git branch-name) --rebase"
     reseth = "!git reset origin/$(git branch-name) --hard"
+    push = "~git push origin $(git branch-name)"
+    pul = "!git pull origin $(git branch-name)"

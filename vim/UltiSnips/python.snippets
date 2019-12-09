@@ -2,3 +2,44 @@ snippet pprint "import ppring" !b
 from pprint import pprint
 pprint(${0})
 endsnippet
+
+snippet cl "cl" !b
+print(${0})
+endsnippet
+
+snippet tag "surround with a tag"
+[${1}]${2:${VISUAL}}[/$1]
+endsnippet
+
+snippet with "with" b
+with ${1:expr}`!p snip.rv = " as " if t[2] else ""`${2:var}:
+	${3:${VISUAL:pass}}
+$0
+endsnippet
+
+snippet for "for loop" b
+for ${1:item} in ${2:iterable}:
+	${3:${VISUAL:pass}}
+endsnippet
+
+#! header
+snippet #! "#!/usr/bin/env python" b
+#!/usr/bin/env python
+$0
+endsnippet
+
+snippet deff "function or class method"
+def ${1:fname}(`!p snip.rv = "self, " if snip.indent else ""`$2):
+	$0
+endsnippet
+
+snippet try "Try / Except" b
+try:
+	${1:${VISUAL:pass}}
+except ${2:Exception} as ${3:e}:
+	${4:raise $3}
+endsnippet
+
+snippet af "Assert False" b
+self.assertFalse(${1:${VISUAL:expression}})
+endsnippet
