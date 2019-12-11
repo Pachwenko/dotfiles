@@ -10,3 +10,4 @@ custom-configs/custom-snips/*
 config/configstore/*
 config/coc/*
 tags
+config/hub
