@@ -2,7 +2,7 @@
   "python.formatting.provider": "yapf",
   "python.formatting.yapfArgs": [
     "--style",
-    "based_on_style: facebook, COLUMN_LIMIT: 120, BLANK_LINE_BEFORE_NESTED_CLASS_OR_DEF: true}"
+    "{based_on_style: facebook, COLUMN_LIMIT: 120, BLANK_LINE_BEFORE_NESTED_CLASS_OR_DEF: true, ALLOW_SPLIT_BEFORE_DICT_VALUE: false}"
   ],
   "python.linting.flake8Enabled": true,
   "python.linting.flake8CategorySeverity.W": "Error",
@@ -13,6 +13,7 @@
     "undefined-variable"
   ],
   "python.jediEnabled": false,
-  "suggest.enablePreview": true
+  "suggest.enablePreview": true,
+  "coc.preferences.formatOnSaveFiletypes": ["css", "html", "python", "javascript"],
 }
 
