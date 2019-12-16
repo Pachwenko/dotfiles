@@ -14,6 +14,6 @@
   ],
   "python.jediEnabled": false,
   "suggest.enablePreview": true,
-  "coc.preferences.formatOnSaveFiletypes": ["css", "html", "python", "javascript"],
+  // "coc.preferences.formatOnSaveFiletypes": ["css", "html", "python", "javascript"],
 }
 
