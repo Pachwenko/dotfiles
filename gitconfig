@@ -28,3 +28,9 @@
     reseth = "!git reset origin/$(git branch-name) --hard"
     push = "~git push origin $(git branch-name)"
     pul = "!git pull origin $(git branch-name)"
+[push]
+	default = current
+[pull]
+	default = current
+[branch]
+	autoSetupMerge = always
