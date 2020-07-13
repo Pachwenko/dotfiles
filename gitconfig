@@ -10,7 +10,27 @@
     deleted = red
     untracked = yellow
 [user]
-    name =
-    email =
+	name = Pachwenko
+[commit]
+	gpgsign = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[alias]
+    co = checkout
+    cb = checkout -b
+    ga = git commit --ammend
+    gp = git push origin
+    branch-name = "!git rev-parse --abbrev-ref HEAD"
+    publish = "!git push origin $(git branch-name)"
+    pull-rebase = "!git pull origin $(git branch-name) --rebase"
+    reseth = "!git reset origin/$(git branch-name) --hard"
+    push = "~git push origin $(git branch-name)"
+    pul = "!git pull origin $(git branch-name)"
 [push]
     default = matching
+[pull]
+	default = current
+[branch]
+	autoSetupMerge = always
+[init]
+	templatedir = ~/.git-templates
