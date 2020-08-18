@@ -1,13 +1,13 @@
 "===============================================================================
 " Plugin source
 "===============================================================================
-"'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"'Shougo/deoplete.nvim'
 
 "===============================================================================
 " Plugin Configurations
 "===============================================================================
 " disable neocomplete
-let g:neocomplete#enable_at_startup = 0
+" let g:neocomplete#enable_at_startup = 0
 " use deoplete instead (same author)
 let g:deoplete#enable_at_startup = 1
 let g:jedi#auto_vim_configuration = 0
