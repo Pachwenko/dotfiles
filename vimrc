@@ -99,6 +99,3 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
-
-let g:python3_host_prog = expand('/Users/patrickmccartney/.pyenv/versions/python3/')
-let g:python_host_prog = expand('/Users/patrickmccartney/.pyenv/versions/python2/')
