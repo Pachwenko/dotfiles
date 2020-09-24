@@ -47,3 +47,10 @@ alias .....='cd ../../../..'
 alias ls='ls --color'
 # Empty the trash folder that is created when you delete things as root
 alias root_trash='sudo bash -c "exec rm -r /root/.local/share/Trash/{files,info}/*"'
+
+export PATH='/usr/local/bin:/Users/patrickmccartney/.pyenv/plugins/pyenv-virtualenv/shims:/Users/patrickmccartney/.pyenv/shims:/Users/patrickmccartney/.pyenv/shims:~/.pyenv/shims:/usr/local/bin:/Users/patrickmccartney/.pyenv/plugins/pyenv-virtualenv/shims:/Users/patrickmccartney/.pyenv/shims:/Users/patrickmccartney/.pyenv/shims:~/.pyenv/shims:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'\n
+export PATH='/usr/local/bin:/Users/patrickmccartney/.pyenv/plugins/pyenv-virtualenv/shims:/Users/patrickmccartney/.pyenv/shims:/bin:/Users/patrickmccartney/.local/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/usr/local/heroku/bin:/Users/patrickmccartney/.pyenv/plugins/pyenv-virtualenv/shims:/Users/patrickmccartney/.pyenv/shims:/Users/patrickmccartney/.pyenv/shims:~/.pyenv/shims:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/patrickmccartney/.pyenv/plugins/pyenv-virtualenv/shims:/Users/patrickmccartney/.pyenv/shims:/Users/patrickmccartney/.local/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/usr/local/heroku/bin:~/.pyenv/shims'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
