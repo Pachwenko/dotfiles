@@ -91,7 +91,7 @@ alias pyclean="find . -name '*.pyc' -delete"
 alias showstash="git stash list | awk -F: '{ print \"\n\n\n\n\"; print $0; print \"\n\n\"; system(\"git stash show -p \" $1); }'"
 alias git-track='function _gittrack(){ git branch --set-upstream-to=origin/"$1" "$1";};_gittrack'
 alias which-tmux='tmux display-message -p "#S"'
-alias mkvenv27='mkvirtualenv  -p/Users/imtapps/.pyenv/versions/2.7.12/bin/python'
+alias mkvenv27='mkvirtualenv  -p/Users/imtapps/.pyenv/versions/2.7.17/bin/python'
 alias myip="curl http://ipecho.net/plain; echo"
 alias prod-db="./manage.py tunnel dbtunnel --environment=Production --application=$1 --port=1234"
 alias iyapf="yapf . --parallel --recursive -i -p --exclude='./dist/*' --exclude='./.tox/*' --exclude='./*.egg-info' --style='{based_on_style: facebook, COLUMN_LIMIT: 120, BLANK_LINE_BEFORE_NESTED_CLASS_OR_DEF: true, ALLOW_SPLIT_BEFORE_DICT_VALUE: false}'"
@@ -358,6 +358,9 @@ alias emberperms='ember g ember-cli-deploy-permissions'
 alias essl='ember s --ssl --ssl-key ~/.tls/localhost.imtapps.com.key --ssl-cert ~/.tls/localhost.imtapps.com.crt --port 4200'
 alias gmm='git fetch && git rebase origin/master' alias aias='vim ~/dotfiles/custom-configs/patrick/custom_aliases.sh'
 alias openconfigs='vim ~/dotfiles/custom-configs/patrick/'
+alias vectorpf='ssh -T -L 33306:imtapps-staging-mysql-serverless-cluster.cluster-cyvr1qhxdlsh.us-west-2.rds.amazonaws.com:3306 staging-bastion'
+alias history='cat ~/.zsh_history'
+alias hgrep='history | grep'
 
 # use like "cpinit vector"
 # clones a git repo prefixed with imtapps/
@@ -395,18 +398,30 @@ function runs() {
 # updates machine stuff like homebrew, global npm, and vim plugins
 function update() {
   if [ "$(uname)" = "Darwin" ]; then
+      echo "brew update"
       brew update
+      echo "brew upgrade"
       brew upgrade
+      echo "brew cleanup -s"
       brew cleanup -s
+      echo "npm update -g"
       npm update -g
+      echo "vim +PlugInstall +qall"
       vim +PlugInstall +qall # incase any plugins haven't been installed yet (new machine?)
+      echo "vim +PlugUpdate +qall"
       vim +PlugUpdate +qall
+      echo "vim +PlugUpgrade +qall"
       vim +PlugUpgrade +qall
   else
+      echo "sudo apt-get update && sudo apt-get upgrade"
       sudo apt-get update && sudo apt-get upgrade
+      echo "npm update -g"
       npm update -g
+      echo "vim +PlugInstall +qall"
       vim +PlugInstall +qall # incase any plugins haven't been installed yet (new machine?)
+      echo "vim +PlugUpdate +qall"
       vim +PlugUpdate +qall
+      echo "vim +PlugUpgrade +qall"
       vim +PlugUpgrade +qall
   fi
 }

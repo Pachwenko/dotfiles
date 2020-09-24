@@ -30,6 +30,7 @@
     default = matching
 [pull]
 	default = current
+	rebase = false
 [branch]
 	autoSetupMerge = always
 [init]
