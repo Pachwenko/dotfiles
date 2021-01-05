@@ -97,8 +97,9 @@ alias prod-db="./manage.py tunnel dbtunnel --environment=Production --applicatio
 alias iyapf="yapf . --parallel --recursive -i -p --exclude='./dist/*' --exclude='./.tox/*' --exclude='./*.egg-info' --style='{based_on_style: facebook, COLUMN_LIMIT: 120, BLANK_LINE_BEFORE_NESTED_CLASS_OR_DEF: true, ALLOW_SPLIT_BEFORE_DICT_VALUE: false}'"
 alias etest='ember t -s'
 alias et='ember t -s'
-alias eft='ember exam --split=2 --parallel --silent'
 alias es='ember serve'
+alias installpytest='pip install pytest pytest-django pytest-xdist pytest-random-order'
+alias pft='pytest -n auto --disable-warnings --durations=10 --durations-min=1.0 -ra'
 
 alias mkvenv3="pyenv virtualenv 3.4.10"
 alias rmvenv="pyenv deactivate && pyenv uninstall"
@@ -318,6 +319,10 @@ get_alias() {
 # >>1
 
 # Patrick stuff
+
+alias stopvpn='launchctl unload /Library/LaunchAgents/com.paloaltonetworks.gp.pangp*'
+alias startvpn='launchctl load /Library/LaunchAgents/com.paloaltonetworks.gp.pangp*'
+
 #alias stash='git stash'
 alias pop='git stash pop'
 alias status='git status'
@@ -331,13 +336,12 @@ alias pipi='pip install'
 alias pipir='pip install -r requirements/dev.txt'
 alias pipup='pip install --upgrade pip'
 alias pipu='pip uninstall'
-alias pipclean=' pip freeze > temp0972824.txt && pip uninstall -r temp0972824.txt -y && rm temp0972824.txt'
 alias activate='pyenv activate'
 alias a='pyenv activate'
 alias d='pyenv deactivate'
-alias mkenv3='deactivate; pyenv virtualenv 3.6.10 $(basename $PWD); pyenv activate $(basename $PWD); pipup'
+alias mkenv3='deactivate; pyenv virtualenv 3.6.10 $(basename $PWD); pyenv activate $(basename $PWD)'
 # alias mkenv3='deactivate; pyenv virtualenv 3.4.10 $(basename $PWD); pyenv activate $(basename $PWD); pipup'
-alias mkenv2='deactivate; pyenv virtualenv 2.7.14 $(basename $PWD); pyenv activate $(basename $PWD); pipup'
+alias mkenv2='deactivate; pyenv virtualenv 2.7.14 $(basename $PWD); pyenv activate $(basename $PWD)'
 alias denv='pyenv virtualenv-delete $(basename $PWD)'
 alias pinit='deactivate; pyenv virtualenv 3.6.10 $(basename $PWD); pyenv activate $(basename $PWD); pip install --upgrade pip && pip install -r requirements/dev.txt'
 alias v='vim'
@@ -356,7 +360,7 @@ alias cdd='builtin cd $1 && ls -F'
 alias nukedocker='docker system prune -a --volumes'
 alias emberperms='ember g ember-cli-deploy-permissions'
 alias essl='ember s --ssl --ssl-key ~/.tls/localhost.imtapps.com.key --ssl-cert ~/.tls/localhost.imtapps.com.crt --port 4200'
-alias gmm='git fetch && git rebase origin/master' alias aias='vim ~/dotfiles/custom-configs/patrick/custom_aliases.sh'
+alias gmm='git fetch && git rebase origin/master'
 alias openconfigs='vim ~/dotfiles/custom-configs/patrick/'
 alias vectorpf='ssh -T -L 33306:imtapps-staging-mysql-serverless-cluster.cluster-cyvr1qhxdlsh.us-west-2.rds.amazonaws.com:3306 staging-bastion'
 alias history='cat ~/.zsh_history'
@@ -432,10 +436,23 @@ function fixvector() {
   source deactivate
   source activate $(basename $PWD)
   pip uninstall pycrypto pycryptodome --yes; pip install pycrypto==2.6.1
-  brew install mysql
-  brew install mysql-connector-c
+  # brew install mysql  # Only when not already installed
+  # brew install mysql-connector-c
   pip install mysqlclient
+  pip install xmlrunner
 }
 
+function eft() {
+    if [[ ! -d "./node_modules/ember-exam" ]]; then
+        npm install ember-exam
+    fi
+    ember exam --split=2 --parallel --silent
+}
+
+function pipclean() {
+  PIP_CLEAN_FILENAME=`uuidgen`.txt
+  pip freeze > "$PIP_CLEAN_FILENAME" && pip uninstall -r "$PIP_CLEAN_FILENAME" -y
+}
 #
 # end Patricks stuff
+alias lasttest='cat /tmp/vim_python_test_runner_cache'
