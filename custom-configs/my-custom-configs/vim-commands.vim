@@ -10,3 +10,8 @@ command Vs :vs
 command Hs :sp
 command VS :vs
 command HS :sp
+
+command! FormatPython 0,$!black -l 120
+
+autocmd FileType python nnoremap <leader>y :0,$!yapf --style="{based_on_style: facebook, FORCE_MULTILINE_DICT: true, SPLIT_ALL_COMMA_SEPARATED_VALUES: true, COLUMN_LIMIT: 120, BLANK_LINE_BEFORE_NESTED_CLASS_OR_DEF: true}"<Cr><C-o>
+

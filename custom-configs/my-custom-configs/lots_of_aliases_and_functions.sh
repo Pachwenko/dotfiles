@@ -94,10 +94,11 @@ alias which-tmux='tmux display-message -p "#S"'
 alias mkvenv27='mkvirtualenv  -p/Users/imtapps/.pyenv/versions/2.7.17/bin/python'
 alias myip="curl http://ipecho.net/plain; echo"
 alias prod-db="./manage.py tunnel dbtunnel --environment=Production --application=$1 --port=1234"
-alias iyapf="yapf . --parallel --recursive -i -p --exclude='./dist/*' --exclude='./.tox/*' --exclude='./*.egg-info' --style='{based_on_style: facebook, COLUMN_LIMIT: 120, BLANK_LINE_BEFORE_NESTED_CLASS_OR_DEF: true, ALLOW_SPLIT_BEFORE_DICT_VALUE: false}'"
+alias iyapf='yapf . --parallel --recursive -i -p --exclude="/dist/*" --exclude="/.tox/*" --exclude="/*.egg-info" --style="{based_on_style: facebook, COLUMN_LIMIT: 120, BLANK_LINE_BEFORE_NESTED_CLASS_OR_DEF: true, ALLOW_SPLIT_BEFORE_DICT_VALUE: false}"'
 alias etest='ember t -s'
 alias et='ember t -s'
 alias es='ember serve'
+alias essl='ember s --ssl --ssl-key ~/.tls/localhost.imtapps.com.key --ssl-cert ~/.tls/localhost.imtapps.com.crt --port 4200'
 alias installpytest='pip install pytest pytest-django pytest-xdist pytest-random-order'
 alias pft='pytest -n auto --disable-warnings --durations=10 --durations-min=1.0 -ra'
 
@@ -359,12 +360,12 @@ alias cdd='builtin cd $1 && ls -F'
 
 alias nukedocker='docker system prune -a --volumes'
 alias emberperms='ember g ember-cli-deploy-permissions'
-alias essl='ember s --ssl --ssl-key ~/.tls/localhost.imtapps.com.key --ssl-cert ~/.tls/localhost.imtapps.com.crt --port 4200'
 alias gmm='git fetch && git rebase origin/master'
 alias openconfigs='vim ~/dotfiles/custom-configs/patrick/'
 alias vectorpf='ssh -T -L 33306:imtapps-staging-mysql-serverless-cluster.cluster-cyvr1qhxdlsh.us-west-2.rds.amazonaws.com:3306 staging-bastion'
 alias history='cat ~/.zsh_history'
 alias hgrep='history | grep'
+alias agrep='alias | grep -i'
 
 # use like "cpinit vector"
 # clones a git repo prefixed with imtapps/
@@ -386,8 +387,7 @@ function ceinit() {
 }
 
 # runs the django server, takes a single argument for the environment to use
-# checks if manage.py is nested in the src directory or not
-function runs() {
+function rund() {
   NESTED_FILE=./src/manage.py
   cd .
   source deactivate
@@ -397,6 +397,20 @@ function runs() {
   else
       ./manage.py ${1-remote_staging} runserver
   fi
+}
+
+function generate_imtapps_tls_files {
+    cd ~
+    mkdir .tls
+    openssl req -newkey rsa:2048 -x509 -nodes -keyout .tls/localhost.imtapps.com.key -new -out .tls/localhost.imtapps.com.crt -subj /CN=localhost.imtapps.com -reqexts SAN -extensions SAN -config <(cat /System/Library/OpenSSL/openssl.cnf <(printf '[SAN]\nsubjectAltName=DNS:localhost.imtapps.com')) -sha256 -days 3650
+    sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain .tls/localhost.imtapps.com.crt
+}
+
+function rune() {
+    if [[ ! -f ~/.tls/localhost.imtapps.com.key ]]; then
+        generate_imtapps_tls_files
+    fi
+    ember s --ssl --ssl-key ~/.tls/localhost.imtapps.com.key --ssl-cert ~/.tls/localhost.imtapps.com.crt --port 4200
 }
 
 # updates machine stuff like homebrew, global npm, and vim plugins
@@ -446,7 +460,7 @@ function eft() {
     if [[ ! -d "./node_modules/ember-exam" ]]; then
         npm install ember-exam
     fi
-    ember exam --split=2 --parallel --silent
+    ember exam --split=2 --silent --parallel
 }
 
 function pipclean() {
